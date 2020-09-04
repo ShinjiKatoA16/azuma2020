@@ -5,3 +5,6 @@
 
 ### Variables
 - [Python variables](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUM002RzFQUFFFOTBXUEpJUFdPRUpCUENVRS4u)
+
+### if (条件分岐)
+- [Quiz if](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUOU9XMTFCTTBVWEU1MkMwMzUySUVSTDIxVy4u)
