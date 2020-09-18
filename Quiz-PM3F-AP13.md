@@ -12,4 +12,4 @@
 
 ### if (条件分岐)
 - [Quiz if](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUOU9XMTFCTTBVWEU1MkMwMzUySUVSTDIxVy4u)
-- [あんもくの True/False](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUQk03WDU2WE1IVkRRM1c3OEdMMFZVRFNSQS4u)
+- [あんもくの True/False](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUQzhEVDc4MlVIQ01CS1NYU0UwRlRaREhMVi4u)
