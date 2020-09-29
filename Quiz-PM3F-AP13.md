@@ -13,3 +13,4 @@
 ### if (条件分岐)
 - [Quiz if](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUOU9XMTFCTTBVWEU1MkMwMzUySUVSTDIxVy4u)
 - [あんもくの True/False](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUQzhEVDc4MlVIQ01CS1NYU0UwRlRaREhMVi4u)
+- [if Part2](https://forms.office.com/Pages/ResponsePage.aspx?id=IznFG0aMWkSwGiWWqSyf3Y7pjgeKEGRKgzR626wJl2BUMDFBWUdaQ0YyVVNVTkdZT09TVlhVMllPSS4u)
