@@ -8,6 +8,11 @@
 
 ## git コマンドのつかいかた
 
+### Status りれきのかくにん
+
+- `git status`
+- `git log`
+
 ### Repository さくせい
 
 - `git clone https:github.com/user_name/repository_name` さいしょの1回だけじっこう。github の repository とおなじものを local PC につくる
