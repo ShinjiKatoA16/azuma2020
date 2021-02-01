@@ -10,6 +10,11 @@
 
 GUI の Client Application もあるけど、うごきを りかいするために コマンドの つかいかたを おぼえましょう
 
+### User Name, E-Mail Address のとうろく (git をインストールしたあとに１かいだけ)
+
+- `git config --global user.name "Your Name"`
+- `git config --global user.email you@example.com`
+
 ### Status, commit のりれきのかくにん
 
 - `git status`
