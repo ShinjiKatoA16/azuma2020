@@ -22,7 +22,7 @@ GUI の Client Application もあるけど、うごきを りかいするため�
 ### Local のへんこうを github にはんえい
 
 - Local PC の directory で file のへんしゅう・ついか
-- `git add ファイル名`  または  `git add --ALL`
+- `git add ファイル名`  または  `git add --all`
 - `git commit -m "コメント"`
 - `git push`
 
