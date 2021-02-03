@@ -29,7 +29,7 @@ GUI の Client Application もあるけど、うごきを りかいするため�
 - Local PC の directory で file のへんしゅう・ついか
 - `git add ファイル名`  または  `git add --all`
 - `git commit -m "コメント"`
-- `git push`
+- `git push`  (Personal Access Token をもとめられたら settings -> Developper settings からさくせい. repo をチェックする)
 
 ### github のへんこうを Local にはんえい
 
