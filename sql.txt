@@ -1,0 +1,123 @@
+/* 1-1 P1 */
+SELECT * FROM books;
+
+/* 1-1 P2 */
+SELECT * FROM author;
+
+/* 1-1 P3 */
+SELECT * FROM sales;
+
+/* 1-1 P4 */
+/* + -> *, : -> ; */
+SELECT * FROM books;
+
+/* 1-2 P1 */
+SELECT title FROM books;
+
+/* 1-2 P2 */
+SELECT p_name,price FROM product;
+
+/* 1-2 P3 */
+SELECT l_name,f_name,class FROM employee;
+
+/* 1-2 P4 */
+/* SELECTS -> SELECT, title publish -> title,publish */
+SELECT title,publish FROM books;
+
+
+/* Page5 P1-3 P1 */
+SELECT DISTINCT prefecture FROM quest;
+
+/* Page5 P1-3 P2 */
+SELECT DISTINCT referer FROM access_log;
+
+/* Page6 P1-3 P3 */
+SELECT DISTINCT l_name,f_name FROM usr;
+
+/* Page6 P1-3 P4 */
+/* ALL -> DISTINCT, class_depart_id -> class */
+SELECT DISTINCT class FROM employee;
+
+
+/* Page8 P1-4 P1 */
+SELECT answer1,answer2 FROM quest WHERE age>=20;
+
+/* Page8 P1-4 P2 */
+SELECT isbn,title,publish FROM books WHERE publish in ('日経BP', '翔泳社');
+
+/* Page8 P1-4 P3 */
+SELECT l_name,f_name,email FROM usr WHERE prefecture<>'東京都';
+
+/* Page8 P1-4 P4 */
+SELECT name,sex,prefecture FROM quest WHERE age BETWEEN 30 and 39;
+
+/* Page8 P1-4 P5 */
+SELECT name,answer1,answer2 FROM quest WHERE answered>='2013-01-01';
+
+/* Page12 P1-5 P2 */
+SELECT name FROM quest WHERE name NOT LIKE '%子';
+
+/* P14 1-6 P3 */
+SELECT answer2 FROM quest
+WHERE answer2 <> '' and answer2 IS NOT NULL;  
+
+/* P14 1-6 P4 */
+SELECT * FROM employee WHERE l_name='山田' and f_name='奈美';  
+
+/* Page29 1-13 Sample */
+SELECT referer,COUNT(*) as カウント数,
+   CASE
+	   WHEN COUNT(*)>=50 THEN 'A'
+	   WHEN COUNT(*)>=10 THEN 'B'
+	   ELSE 'C'
+   END AS ランク
+FROM access_log GROUP BY referer;
+
+/* P30 1-13 P1 */
+SELECT name,
+    CASE
+	WHEN answer1==3 THEN 'ためになった'
+	WHEN answer1==2 THEN '普通'
+	WHEN answer1==1 THEN '役に立たない'
+    END AS 解答１, answer2 AS 解答２
+FROM quest ORDER BY answered DESC;
+
+/* P30 1-13 P2 */
+SELECT isbn,COUNT(*),
+   CASE
+	WHEN COUNT(*)>=10 THEN '好評'
+	WHEN COUNT(*)>=5 THEN '普通'
+	ELSE '不評'
+   END AS 評価
+FROM rental GROUP BY isbn;
+
+
+/* P31 1-13 P3 */
+SELECT referer,COUNT(*),
+   CASE
+	WHEN COUNT(*)<10 THEN 'C'
+	WHEN COUNT(*)<50 THEN 'B'
+	ELSE 'A'
+   END AS ランク
+FROM access_log GROUP BY referer HAVING COUNT(*) >=3
+ORDER BY COUNT(*) DESC;
+
+/* P31 1-13 P4 */
+SELECT author_id AS 著者ID, COUNT(*) AS カウント数,
+   CASE
+	WHEN COUNT(*)>=4 THEN '多い'
+	WHEN COUNT(*)>=2 THEN '普通'
+	ELSE '少ない'
+   END AS 評価
+FROM author_books GROUP BY author_id;
+
+/* P32 1-13 P5 */
+/* WHERE -> WHEN,  ELSE THEN -> ELSE */
+SELECT l_name||f_name,
+   CASE
+	WHEN class in ('部長', '課長') THEN '管理職'
+	WHEN class in ('主任', '担当') THEN '総合職'
+	ELSE '一般職'
+   END AS 役職クラス
+FROM employee
+		
