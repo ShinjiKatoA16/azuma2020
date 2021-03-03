@@ -51,18 +51,197 @@ SELECT l_name,f_name,email FROM usr WHERE prefecture<>'東京都';
 /* Page8 P1-4 P4 */
 SELECT name,sex,prefecture FROM quest WHERE age BETWEEN 30 and 39;
 
-/* Page8 P1-4 P5 */
+/* Page9 P1-4 P5 */
 SELECT name,answer1,answer2 FROM quest WHERE answered>='2013-01-01';
+
+/* Page9 1-4 P6 */
+SELECT user_id,isbn FROM rental WHERE returned=0;
+
+/* Page9 1-4 P7 */
+SELECT answer1,answer2 FROM quest WHERE answer2 IS NOT NULL;
+
+/* Page9 1-4 P8 */
+/* title publish price -> title,publish,price, price<=5000 -> price<5000 */
+SELECT title,publish,price FROM books WHERE price<5000;
+
+
+/* Page11 1-5 example */
+SELECT title,publish,publish_date FROM books
+WHERE title LIKE '%SQL%';
+
+/* Page11 1-5 P1 */
+SELECT * FROM author WHERE name LIKE '山田%';
 
 /* Page12 P1-5 P2 */
 SELECT name FROM quest WHERE name NOT LIKE '%子';
 
-/* P14 1-6 P3 */
+/* Page12 1-5 P3 */
+SELECT isbn,title,price FROM books WHERE title LIKE 'SQL__';
+
+/* Page12 1-5 P4 */
+SELECT l_name,f_name FROM employee WHERE l_name_kana LIKE 'ア%';
+
+/* Page12 1-5 P5 */
+/* title, -> ???, _社 -> %社  */
+SELECT title,publish FROM books WHERE publish LIKE '%社';
+
+
+/* Page13 1-6 example */
+SELECT isbn,title,price FROM books
+WHERE publish IN ('日経BP', '翔泳社') AND price >= 3000;
+
+/* Page13 1-6 P1 */
+SELECT * FROM quest WHERE sex='女' AND age BETWEEN 20 AND 29;
+
+/* Page13 1-6 P2 */
+SELECT * FROM usr WHERE prefecture='東京都' AND email LIKE '%examples.com';
+
+/* Page14 1-6 P3 */
 SELECT answer2 FROM quest
 WHERE answer2 <> '' and answer2 IS NOT NULL;  
 
-/* P14 1-6 P4 */
+/* Page14 1-6 P4 */
 SELECT * FROM employee WHERE l_name='山田' and f_name='奈美';  
+
+
+/* Page15 1-7 example */
+SELECT answer1,answer2 FROM quest WHERE answer2 IS NOT NULL
+and answer2 <> '' ORDER BY answer1 ASC;
+
+/* Page15 1-7 P1 */
+SELECT title,price FROM books WHERE price BETWEEN 2500 and 3500 ORDER BY price ASC;
+
+/* Page16 1-7 P2 */
+SELECT l_name,f_name,prefecture FROM usr
+ORDER BY l_name_kana ASC, f_name_kana ASC;
+
+/* Page16 1-7 P3 */
+SELECT * FROM rental WHERE returned=0 AND rental_date < '2012-12-01'
+ORDER BY rental_date DESC;
+
+/* Page16 1-7 P4 */
+/* IN -> BETWEEN, BY referer -> BY referer DESC */
+SELECT * FROM access_log
+WHERE access_date BETWEEN '2013-01-01' AND '2013-01-13'
+ORDER BY referer DESC, ip_address DESC;
+
+
+/* Page17 1-8 example */
+SELECT l_name,f_name,last_update FROM employee
+ORDER BY last_update DESC LIMIT 5;
+
+/* Page17 1-8 P1 */
+SELECT title,publish_date FROM books ORDER BY publish_date DESC LIMIT 2,5;
+
+/* Page17 1-8 P2 */
+SELECT name,answer1,answer2 FROM quest ORDER BY answered DESC LIMIT 10;
+
+/* Page18 1-8 P3 */
+SELECT user_id,isbn,rental_date FROM rental
+WHERE returned=0 ORDER BY rental_date ASC LIMIT 5;
+
+/* Page18 1-8 P4 */
+SELECT * FROM sales ORDER BY s_value DESC LIMIT 15;
+
+/* Page18 1-8 P5 */
+/* ASC -> DESC, 10,0 -> 0,10 */
+SELECT page_id,referer,ip_address
+FROM access_log ORDER BY access_date DESC
+LIMIT 0,10;
+
+
+/* Page19 1-9 example */
+SELECT publish,AVG(price) FROM books GROUP BY publish;
+
+/* Page19 1-9 P1 */
+SELECT sex,MAX(age),MIN(age) FROM quest GROUP BY sex;
+
+/* Page20 1-9 P2 */
+SELECT prefecture,sex,AVG(answer1) FROM quest GROUP BY prefecture,sex;
+
+/* Page20 1-9 P3 */
+SELECT s_id,SUM(s_value) FROM sales GROUP BY s_id;
+
+/* Page20 1-9 P4 */
+SELECT publish,MAX(price) FROM books GROUP BY publish;
+
+/* Page20 1-9 P5 */
+/* SUM->COUNT, ORDER BY-> GROUP BY */
+SELECT page_id, COUNT(*) FROM access_log GROUP BY page_id;
+
+
+/* Page21 1-10 example */
+SELECT title AS 書名,price*1.05 AS 税込価格 FROM BOOKS;
+
+/* Page21 1-10 P1 */
+SELECT p_name AS 商品名,price AS 価格 FROM product;
+
+/* Page22 1-10 P2 */
+SELECT prefecture AS 都道府県名,AVG(age) AS 平均年齢
+FROM quest GROUP BY prefecture;
+
+/* Page22 1-10 P3 */
+SELECT prefecture AS 都道府県名,COUNT(*) AS ユーザー数
+FROM usr GROUP BY prefecture;
+
+/* Page22 1-10 P4 */
+SELECT publish AS 出版社, AVG(price) AS 価格平均
+FROM books GROUP BY publish;
+
+/* Page22 1-10 P5 */
+/* age -> (not necessary), IS->AS */
+SELECT prefecture,sex,AVG(answer1) AS 評価平均
+FROM quest GROUP BY prefecture,sex;
+
+
+/* Page23 1-11 example */
+SELECT 'ISBN'||isbn AS ISBNコード, title AS 書名,
+STRFTIME('%Y年%m月%d日', publish_date) AS 刊行日 FROM books;
+
+/* Page24 1-11 P1 */
+SELECT prefecture,ROUND(AVG(answer1)) FROM quest GROUP BY prefecture;
+
+/* Page25 1-11 P2 */
+SELECT isbn AS ISBNコード, STRFTIME('%Y/%m/%d',rental_date) AS 貸出日
+FROM rental WHERE returned=0 ORDER BY rental_date ASC;
+
+/* Page25 1-11 P3 */
+SELECT l_name||f_name AS 利用者名,prefecture||city||o_address AS 住所
+FROM usr ORDER BY user_id DESC;
+
+/* Page25 1-11 P4 */
+SELECT publish,FLOOR(AVG(price)) FROM books GROUP BY publish;
+
+/* Page25 1-11 P5 */
+/* 'l_name', 'f_name' -> l_name, f_name, ORDER BY depart_id,-> ORDER BY depart_id DESC */
+SELECT depart_id, class, l_name||f_name AS 氏名 FROM employee
+ORDER BY depart_id DESC, class DESC;
+
+
+/* Page27 1-12 example */
+SELECT prefecture,AVG(answer1) AS 評価平均 FROM quest
+GROUP BY prefecture HAVING AVG(answer1)<2;
+
+/* Page27 1-12 P1 */
+SELECT prefecture,AVG(age) FROM quest
+GROUP BY prefecture HAVING AVG(age)>=35 AND AVG(age)<50;
+
+/* Page27 1-12 P2 */
+SELECT prefecture,MAX(age) FROM quest WHERE sex='男'
+GROUP BY prefecture HAVING MAX(age)>60;
+
+/* Page28 1-12 P3 */
+SELECT author_id,COUNT(*) FROM author_books
+GROUP BY author_id HAVING COUNT(*)>=3;
+
+/* Page28 1-12 P4 */
+SELECT publish,category_id, COUNT(*) FROM books
+GROUP BY publish,category_id HAVING COUNT(*)<3;
+
+/* Page28 1-12 P5 */
+/* ORDER BY -> GROUP BY, WHERE -> HAVING */
+SELECT depart_id, COUNT(*) FROM employee WHERE sex=2
+GROUP BY depart_id HAVING COUNT(*)>=3;
 
 /* Page29 1-13 Sample */
 SELECT referer,COUNT(*) as カウント数,
@@ -73,7 +252,7 @@ SELECT referer,COUNT(*) as カウント数,
    END AS ランク
 FROM access_log GROUP BY referer;
 
-/* P30 1-13 P1 */
+/* Page30 1-13 P1 */
 SELECT name,
     CASE
 	WHEN answer1==3 THEN 'ためになった'
@@ -82,7 +261,7 @@ SELECT name,
     END AS 解答１, answer2 AS 解答２
 FROM quest ORDER BY answered DESC;
 
-/* P30 1-13 P2 */
+/* Page30 1-13 P2 */
 SELECT isbn,COUNT(*),
    CASE
 	WHEN COUNT(*)>=10 THEN '好評'
@@ -92,7 +271,7 @@ SELECT isbn,COUNT(*),
 FROM rental GROUP BY isbn;
 
 
-/* P31 1-13 P3 */
+/* Page31 1-13 P3 */
 SELECT referer,COUNT(*),
    CASE
 	WHEN COUNT(*)<10 THEN 'C'
@@ -102,7 +281,7 @@ SELECT referer,COUNT(*),
 FROM access_log GROUP BY referer HAVING COUNT(*) >=3
 ORDER BY COUNT(*) DESC;
 
-/* P31 1-13 P4 */
+/* Page31 1-13 P4 */
 SELECT author_id AS 著者ID, COUNT(*) AS カウント数,
    CASE
 	WHEN COUNT(*)>=4 THEN '多い'
@@ -111,7 +290,7 @@ SELECT author_id AS 著者ID, COUNT(*) AS カウント数,
    END AS 評価
 FROM author_books GROUP BY author_id;
 
-/* P32 1-13 P5 */
+/* Page32 1-13 P5 */
 /* WHERE -> WHEN,  ELSE THEN -> ELSE */
 SELECT l_name||f_name,
    CASE
